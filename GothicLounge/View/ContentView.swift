@@ -19,6 +19,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    @Previewable @State var previewIsOn = false
     ContentView()
 }

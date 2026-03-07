@@ -1,17 +1,12 @@
-//
-//  GothicLoungeApp.swift
-//  GothicLounge
-//
-//  Created by Евгения Наумова on 07.03.2026.
-//
-
 import SwiftUI
 
 @main
 struct GothicLoungeApp: App {
+    @State var isPresented: Bool = false
     var body: some Scene {
         WindowGroup {
             ContentView()
+            AppView()
         }
     }
 }
