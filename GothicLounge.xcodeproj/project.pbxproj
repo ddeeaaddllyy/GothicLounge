@@ -6,11 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		A00000000000000000000006 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F05D58E82F5C3327000E077E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F05D58EF2F5C3327000E077E;
+			remoteInfo = GothicLounge;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		A00000000000000000000001 /* NoctisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = NoctisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F05D58F02F5C3327000E077E /* GothicLounge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GothicLounge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		A00000000000000000000002 /* UITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = UITests;
+			sourceTree = "<group>";
+		};
 		F05D58F22F5C3327000E077E /* GothicLounge */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = GothicLounge;
@@ -19,6 +35,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A00000000000000000000004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F05D58ED2F5C3327000E077E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				F05D58F22F5C3327000E077E /* GothicLounge */,
+				A00000000000000000000002 /* UITests */,
 				F05D58F12F5C3327000E077E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				F05D58F02F5C3327000E077E /* GothicLounge.app */,
+				A00000000000000000000001 /* NoctisUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +73,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A00000000000000000000008 /* NoctisUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00000000000000000000009 /* Build configuration list for PBXNativeTarget "NoctisUITests" */;
+			buildPhases = (
+				A00000000000000000000003 /* Sources */,
+				A00000000000000000000004 /* Frameworks */,
+				A00000000000000000000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A00000000000000000000007 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A00000000000000000000002 /* UITests */,
+			);
+			name = NoctisUITests;
+			productName = NoctisUITests;
+			productReference = A00000000000000000000001 /* NoctisUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		F05D58EF2F5C3327000E077E /* GothicLounge */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F05D58FB2F5C3329000E077E /* Build configuration list for PBXNativeTarget "GothicLounge" */;
@@ -100,11 +146,19 @@
 			projectRoot = "";
 			targets = (
 				F05D58EF2F5C3327000E077E /* GothicLounge */,
+				A00000000000000000000008 /* NoctisUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A00000000000000000000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F05D58EE2F5C3327000E077E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +169,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A00000000000000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F05D58EC2F5C3327000E077E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +185,43 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A00000000000000000000007 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F05D58EF2F5C3327000E077E /* GothicLounge */;
+			targetProxy = A00000000000000000000006 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		A0000000000000000000000A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				PRODUCT_BUNDLE_IDENTIFIER = ddeeaaddllyy.GothicLounge.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GothicLounge;
+			};
+			name = Debug;
+		};
+		A0000000000000000000000B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				PRODUCT_BUNDLE_IDENTIFIER = ddeeaaddllyy.GothicLounge.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GothicLounge;
+			};
+			name = Release;
+		};
 		F05D58F92F5C3329000E077E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -315,6 +412,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A00000000000000000000009 /* Build configuration list for PBXNativeTarget "NoctisUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0000000000000000000000A /* Debug */,
+				A0000000000000000000000B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F05D58EB2F5C3327000E077E /* Build configuration list for PBXProject "GothicLounge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

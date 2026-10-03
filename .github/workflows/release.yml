@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    tags: ['v[0-9]*']
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    uses: ./.github/workflows/ci.yml
+
+  draft-release:
+    name: Prepare GitHub release
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: Noctis-simulator
+          path: distribution
+      - name: Create release draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" distribution/Noctis-Simulator.zip \
+            --verify-tag --draft --generate-notes --title "Noctis $RELEASE_TAG" \
+            --notes-file .github/release-notes.md

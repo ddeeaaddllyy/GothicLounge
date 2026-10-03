@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+
+jobs:
+  domain-tests:
+    name: Domain and persistence tests
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain
+        run: xcodebuild -version
+      - name: Unit tests
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          swift test --enable-code-coverage 2>&1 | tee artifacts/domain-tests.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: domain-test-log
+          path: artifacts/domain-tests.log
+          retention-days: 14
+
+  ios:
+    name: iOS build and UI tests
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select available iPhone simulator
+        id: simulator
+        run: python3 Scripts/select-simulator.py >> "$GITHUB_OUTPUT"
+      - name: UI tests
+        env:
+          SIMULATOR_ID: ${{ steps.simulator.outputs.id }}
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          xcodebuild -project GothicLounge.xcodeproj -scheme GothicLounge \
+            -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
+            -derivedDataPath build -resultBundlePath artifacts/UITests.xcresult \
+            -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=NO test 2>&1 | tee artifacts/ui-tests.log
+      - name: Release simulator build
+        run: |
+          set -o pipefail
+          xcodebuild -project GothicLounge.xcodeproj -scheme GothicLounge \
+            -configuration Release -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build CODE_SIGNING_ALLOWED=NO build 2>&1 | tee artifacts/release-build.log
+          ditto -c -k --sequesterRsrc --keepParent \
+            build/Build/Products/Release-iphonesimulator/GothicLounge.app artifacts/Noctis-Simulator.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ios-test-results
+          path: |
+            artifacts/*.xcresult
+            artifacts/*.log
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Noctis-simulator
+          path: artifacts/Noctis-Simulator.zip
+          if-no-files-found: error
+          retention-days: 14

@@ -1,3 +1,11 @@
 /GothicLounge.xcodeproj/project.xcworkspace/
 /GothicLounge.xcodeproj/xcuserdata/
 *.xcuserdata
+/Keys
+# Local build and test output
+.DS_Store
+.build/
+.swiftpm/
+build/
+artifacts/
+*.xcresult
